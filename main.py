@@ -8,6 +8,10 @@ def named_entities(text, language):
     :return: List, List of dictionaries with tokens, labels, token beggining position and token ednig position
     """
 
+    if language != "en":
+        language = language + "_core_news_sm"
+        # shortcut "en" work only for English
+        # for other languages we need to specify full name
 
     nlp = spacy.load(language)
     doc = nlp(text)
@@ -21,7 +25,9 @@ def named_entities(text, language):
 
 if __name__ == "__main__":
 
-  text = "Apple is looking at buying U.K. startup for $1 billion"
-  language_code = "en"
+    # Code assums to have spacy imported and necessary languages model ready to use.
 
-  print(named_entities(text, language_code))
+    text = "Apple is looking at buying U.K. startup for $1 billion"
+    language_code = "en"
+
+    print(named_entities(text, language_code))
