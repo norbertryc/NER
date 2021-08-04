@@ -1,9 +1,18 @@
 def named_entities(text, language):
 
-  nlp = spacy.load(language)
-  doc = nlp(text)
+    """
+    Function assigns named entity labels to tokens in provided text.
 
-  return [{"text": ent.text,
+    :param text: String
+    :param language: String, Code for language as is in https://spacy.io/usage/models#languages
+    :return: List, List of dictionaries with tokens, labels, token beggining position and token ednig position
+    """
+
+
+    nlp = spacy.load(language)
+    doc = nlp(text)
+
+    return [{"text": ent.text,
            "type": ent.label_,
            "start_pos": ent.start_char,
            "end_pos": ent.end_char} for ent in doc.ents]
